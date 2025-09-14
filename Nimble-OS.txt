@@ -1,0 +1,68 @@
+NimbleOS
+
+NimbleOS is the operating system that runs on HPE Nimble Storage arrays.
+
+It provides all the data services of Nimble storage, such as:
+
+Adaptive Flash technology (using SSD + HDD for performance + capacity).
+
+Inline deduplication, compression, and snapshots.
+
+Replication and disaster recovery features.
+
+InfoSight integration (predictive analytics & monitoring).
+
+Essentially, NimbleOS is to Nimble arrays what ONTAP is to NetApp or what IOS-XE is to Cisco devices — the software brain controlling the storage system.
+
+-------------------------------------------------------------------------------------------------------------------------
+
+HPE Nimble Storage Python SDK
+
+HPE provides a Python SDK (Software Development Kit) to automate and manage NimbleOS features programmatically.
+
+It is a wrapper around the Nimble REST API, so instead of manually calling API endpoints, you can use Python methods/classes.
+
+Key points:
+
+Distributed as nimble-python-sdk (available on GitHub and PyPI).
+
+Supports operations like:
+
+Create/manage volumes, snapshots, initiator groups.
+
+Query performance stats, alerts, events.
+
+Manage arrays, pools, replication partners.
+
+Works with NimbleOS 5.x and newer.
+
+Typical use cases:
+
+Automating provisioning of storage for VMs/containers.
+
+Integrating Nimble with CI/CD pipelines.
+
+Health monitoring & reporting scripts.
+
+Example (Python SDK use)
+from nimbleclient import NimOSClient
+
+# Connect to the Nimble array
+client = NimOSClient("10.10.10.5", "admin", "yourpassword")
+
+# List volumes
+volumes = client.volumes.list()
+for vol in volumes:
+    print(f"Name: {vol['name']}, Size: {vol['size']}")
+
+# Create a new volume
+client.volumes.create(name="devops-vol", size=100 * 1024 ** 3)  # 100GB
+
+
+Here, the NimOSClient is the main entry point; each resource (volumes, snapshots, etc.) is exposed as a class with CRUD operations.
+
+✅ Summary
+
+NimbleOS = operating system running on HPE Nimble Storage arrays.
+
+Nimble Python SDK = Python client library for managing NimbleOS arrays via REST API.
